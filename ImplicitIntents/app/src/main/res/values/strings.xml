@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Implicit Intents</string>
+    <string name="edittext_uri">http://twitcasting.tv</string>
+    <string name="button_uri">Open Website</string>
+
+    <string name="edittext_loc">PMO神田司町</string>
+    <string name="button_loc">Open Location</string>
+
+    <string name="edittext_share">モイ！</string>
+    <string name="button_share">Share This Text</string>
+</resources>

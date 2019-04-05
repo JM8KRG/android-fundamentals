@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Two Activities</string>
+    <string name="send">Send</string>
+    <string name="text_header">Message Received</string>
+    <string name="button_main">送信</string>
+    <string name="editText_main">メッセージを入力</string>
+    <string name="text_header_reply">返信がありました</string>
+    <string name="button_second">返信</string>　
+    <string name="editText_second">返信メッセージを入力</string>
+</resources>
