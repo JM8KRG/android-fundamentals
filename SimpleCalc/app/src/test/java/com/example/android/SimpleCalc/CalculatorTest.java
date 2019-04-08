@@ -19,12 +19,15 @@ package com.example.android.SimpleCalc;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -53,6 +56,76 @@ public class CalculatorTest {
         assertThat(resultAdd, is(equalTo(2d)));
     }
 
+    /**
+     * 負の値のテスト
+     */
+    @Test
+    public void addTwoNumbersNegative() {
+        double resultAdd = mCalculator.add(-1d, 2d);
+        assertThat(resultAdd, is(equalTo(1d)));
+    }
 
+    /**
+     * 浮動小数点数のテスト
+     */
+    @Test
+    public void addTwoNumbersFloats() {
+        double resultAdd = mCalculator.add(1.111f, 1.111d);
+        // 第一引数は実際の値、第二引数は許容誤差、
+        assertThat(resultAdd, is(closeTo(2.222, 0.01)));
+    }
 
+    /**
+     * 引き算（整数）のテスト
+     */
+    @Test
+    public void subTwoNumbers() {
+        double resultSub = mCalculator.sub(2d, 1d);
+        assertThat(resultSub, is(equalTo(1d)));
+    }
+
+    /**
+     * 引き算（負の値）のテスト
+     */
+    @Test
+    public void subWorksWithNegativeResults() {
+        double resultSub = mCalculator.sub(1d, 17d);
+        assertThat(resultSub, is(equalTo(-16d)));
+    }
+
+    /**
+     * 乗算（整数）のテスト
+     */
+    @Test
+    public void mulTwoNumbers() {
+        double resultMul = mCalculator.mul(9d, 9d);
+        assertThat(resultMul, is(equalTo(81d)));
+    }
+
+    /**
+     * 除算のテスト
+     */
+    @Test
+    public void divTwoNumbers() {
+        double resultDiv = mCalculator.div(64d, 8d);
+        assertThat(resultDiv, is(equalTo(8d)));
+    }
+
+    /**
+     * ゼロ除算が例外になることを確認するテスト
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void divByZeroThrows() {
+        mCalculator.div(1d, 0);
+    }
+
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+
+    @Test(expected = IllegalArgumentException.class)
+    public void DivByZeroExceptionMessage() {
+        mCalculator.div(1d, 0);
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Division by zero!!");
+    }
 }
