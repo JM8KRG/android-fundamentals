@@ -30,8 +30,9 @@ public class DatePickerFragment extends DialogFragment implements OnDateSetListe
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.processDatePickerResult(year, month, day);
     }
 
     @NonNull
