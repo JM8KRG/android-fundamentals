@@ -19,9 +19,11 @@ package com.example.android.droidcafe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ import android.widget.Toast;
  * This activity is blank for now. Subsequent versions of the app
  * provide input controls and a delivery method for an order.
  */
-public class OrderActivity extends AppCompatActivity {
+public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,21 @@ public class OrderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        if (message == null) {
-            Log.d("dd", "null ですよー");
-        }
-
-
         TextView textView = findViewById(R.id.order_text_view);
         textView.setText(message);
+
+        Spinner spinner = findViewById(R.id.label_spinner);
+        if (spinner != null) {
+            spinner.setOnItemSelectedListener(this);
+        }
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.labels_array, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        if (spinner != null) {
+            spinner.setAdapter(adapter);
+        }
     }
 
     public void onRadioButtonClicked(View view) {
@@ -76,6 +86,17 @@ public class OrderActivity extends AppCompatActivity {
 
     public void displayToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String spinnerLabel = adapterView.getItemAtPosition(i).toString();
+        displayToast(spinnerLabel);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

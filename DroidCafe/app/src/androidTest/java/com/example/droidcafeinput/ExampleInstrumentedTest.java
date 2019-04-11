@@ -1,4 +1,4 @@
-package com.example.droidcafe;
+package com.example.droidcafeinput;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

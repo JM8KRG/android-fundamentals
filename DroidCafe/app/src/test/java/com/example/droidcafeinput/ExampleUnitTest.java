@@ -1,4 +1,4 @@
-package com.example.droidcafe;
+package com.example.droidcafeinput;
 
 import org.junit.Test;
 
