@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         // Use PagerAdapter to manage page views in fragments.
         // Each page is represented by its own fragment.
         final ViewPager viewPager = findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
         // Setting a listener for clicks.
